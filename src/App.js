@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import Ghost from './Ghost'
+import ghost1 from './Images/ghost1.png'
+import marsh from './Images/marsh.jpeg'
+import casper from './Images/casper.jpeg'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class Selector extends Component {
+  constructor() {
+    super();
+    this.state = {
+      selectedGhost: 'casper'
+    }
+  }
+  selectGhost = (ghostName) => {
+    this.setState({
+      selectedGhost: ghostName,
+    });
+  };
+
+  render () {
+    return (
+      <div className="container">
+      <div className="navbar">
+      <div>Selected: </div>
+      <div>{this.state.selectedGhost}</div>
+      </div>
+      <div className="ghost-list">
+          <Ghost ghost={ghost1} selectGhost= {this.selectGhost}/>
+          <Ghost ghost={casper} selectGhost= {this.selectGhost}/>
+          <Ghost ghost={marsh} selectGhost= {this.selectGhost}/>
+      </div>
+      </div>
+    )
+  }
 }
 
-export default App;
+export default Selector;
